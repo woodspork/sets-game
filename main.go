@@ -2,6 +2,34 @@ package main
 
 import "fmt"
 
+func cardsAreEqual(card1 []int, card2 []int) bool {
+  counter := 0
+  for i:=0; i<len(card1); i++ {
+    if (card1[i] == card2[i]){
+      counter++
+    }
+  }
+
+  if (counter == 4){
+    return true
+  }
+
+  return false
+}
+
+func removeCard(setsBoard [][]int, card []int) [][]int {
+  var cardsAreEqualVal bool
+  for i:=0; i<12; i++ {
+    cardsAreEqualVal = cardsAreEqual(setsBoard[i], card)
+    if (cardsAreEqualVal == true) {
+      setsBoard[i] = setsBoard[len(setsBoard)-1]
+      return setsBoard[:len(setsBoard)-1]
+    }
+  }
+
+  return setsBoard
+}
+
 func isSet(board1 []int, board2 []int, board3 []int) bool {
   counter := 0
   for i:=0; i<4; i++ {
